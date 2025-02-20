@@ -38,6 +38,7 @@ require("lazy").setup({
   { import = "plugins.core.treesitter" },
 
   -- Plugins de UI
+  { import = "plugins.ui.gitsigns" },
   { import = "plugins.ui.colorscheme" },
   { import = "plugins.ui.comment" },
   { import = "plugins.ui.indent" },

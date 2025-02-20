@@ -48,8 +48,6 @@ keymap("n", "<leader>fd", vim.diagnostic.open_float, { desc = "Ver diagnóstico"
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Abrir LazyGit" })
-keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>", { desc = "Estado de Git" })
-keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Commits de Git" })
 
 -- Misceláneos
 keymap("n", "<leader>c", "<cmd>CommentToggle<cr>", { desc = "Comentar/descomentar" })
@@ -73,10 +71,4 @@ keymap("n", "<leader>W", "<cmd>w !sudo tee %<cr>", { desc = "Guardar con sudo" }
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Abrir/cerrar NvimTree" })
 keymap("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Cerrar buffer actual" })
 keymap("n", "<leader>ba", "<cmd>%bd|e#<cr>", { desc = "Cerrar todos los buffers excepto el actual" })
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Buscar archivos" })
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Buscar texto" })
-keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buscar buffers" })
-keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Buscar ayuda" })
-keymap("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Buscar archivos recientes" })
-keymap("n", "<leader>fc", "<cmd>Telescope git_commits<cr>", { desc = "Buscar commits" })
-keymap("n", "<leader>fs", "<cmd>Telescope git_status<cr>", { desc = "Buscar estado de Git" })
+

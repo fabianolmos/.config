@@ -8,6 +8,7 @@ return {
   { import = 'plugins.ui.colorscheme' },
   { import = 'plugins.ui.indent' },
   { import = 'plugins.ui.comment' },
+  { import = 'plugins.ui.gitsigns' },
   { import = 'plugins.tools.autoformat' },
   { import = 'plugins.tools.debug' },
   { import = 'plugins.tools.lazygit' },
