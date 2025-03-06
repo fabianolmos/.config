@@ -1,0 +1,4 @@
+[env]
+# Forzar el backend de Wayland en caso de conflictos.
+WINIT_UNIX_BACKEND = "wayland"
+
