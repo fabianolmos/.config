@@ -16,7 +16,7 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu wofi --show drun
 
 ### Output configuration
 #
@@ -180,7 +180,7 @@ input "type:keyboard" {
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+t floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
@@ -235,7 +235,6 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
 
 # Spotify 
     bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
@@ -253,6 +252,17 @@ output HDMI-A-3 mode 1920x1080 position 1920 0
 
 # Configurar el monitor eDP-1 a la izquierda
 output eDP-1 mode 1920x1080 position 0 0
+
+# Capturar toda la pantalla con Print
+bindsym Print exec grim ~/Imágenes/screenshot-$(date +'%Y%m%d-%H%M%S').png
+
+
+# Capturar un área con Shift+Print
+bindsym Shift+Print exec grim -g "$(slurp)" ~/Imagenes/screenshot-$(date +'%Y%m%d-%H%M%S').png
+
+# Captura ventana activa
+bindsym $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" ~/Imágenes/screenshot-$(date +'%Y%m%d-%H%M%S').png
+
 
 #
 # Status Bar:
