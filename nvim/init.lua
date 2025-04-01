@@ -728,9 +728,9 @@ require('lazy').setup({
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
           -- Select the [n]ext item
-          ['<C-n>'] = cmp.mapping.select_next_item(),
+          -- ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          -- ['<C-p>'] = cmp.mapping.select_prev_item(),
 
           -- Scroll the documentation window [b]ack / [f]orward
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -739,13 +739,13 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          -- ['<C-y>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
-          --['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -889,6 +889,19 @@ require('lazy').setup({
   {
     'tpope/vim-fugitive',
     cmd = { 'G', 'Git' },
+    config = function()
+      vim.keymap.set('n', '<leader>fr', function()
+        -- Abre la ventana de blame
+        vim.cmd 'G blame'
+        -- Configuración para cerrar fácilmente la ventana de blame
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'fugitiveblame',
+          callback = function()
+            vim.keymap.set('n', 'q', ':q<CR>', { buffer = true, silent = true })
+          end,
+        })
+      end, { desc = '[F]ugitive [R]esponsible (show git blame)' })
+    end,
   }, -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
@@ -928,6 +941,7 @@ require('lazy').setup({
     },
   },
 })
+vim.env.PATH = vim.env.PATH .. ':/home/fabian/git/oxycontroller/**'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
